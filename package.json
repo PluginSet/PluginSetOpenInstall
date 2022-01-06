@@ -1,0 +1,19 @@
+{
+  "name": "com.pluginset.openinstall",
+  "displayName": "PluginSet OpenInstall",
+  "version": "0.0.1",
+  "unity": "2018.4",
+  "description": "OpenInstall SDK Project with PluginSet Core",
+  "keywords": [
+    "pluginset",
+    "openinstall"
+  ],
+  "dependencies": {
+    "com.pluginset.tool.playerservicesresolver": "0.0.1",
+    "com.pluginset.core": "0.0.1"
+  },
+  "author": {
+    "name": "LyneXiao",
+    "email": "lixonxs@icloud.com"
+  }
+}
