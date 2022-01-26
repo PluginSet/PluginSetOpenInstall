@@ -1,4 +1,4 @@
-#if ENABLE_OPEN_INSTALL
+#if !UNITY_EDITOR && ENABLE_OPEN_INSTALL
 using System.Runtime.InteropServices;
 
 #if UNITY_IOS

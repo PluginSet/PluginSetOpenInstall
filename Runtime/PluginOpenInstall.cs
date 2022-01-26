@@ -1,4 +1,4 @@
-#if ENABLE_OPEN_INSTALL
+#if UNITY_EDITOR || ENABLE_OPEN_INSTALL
 using System;
 using System.Collections.Generic;
 using PluginSet.Core;
@@ -7,7 +7,9 @@ using Logger = PluginSet.Core.Logger;
 
 namespace PluginSet.OpenInstall
 {
+#if !UNITY_EDITOR
     [PluginRegister]
+#endif
     public class PluginOpenInstall: PluginBase, IPrivacyAuthorizationCallback, IReport, ICustomPlugin, IChannel
     {
         private static readonly Logger Logger = LoggerManager.GetLogger("OpenInstall");
@@ -53,8 +55,7 @@ namespace PluginSet.OpenInstall
 
         public void OnUserRegister()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
-#elif UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
             OpenInstallIOSApi.Plugin_OpenInstall_ReportRegister();
 #endif
         }
