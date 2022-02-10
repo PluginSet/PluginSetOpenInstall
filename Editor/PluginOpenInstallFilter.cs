@@ -8,8 +8,8 @@ namespace PluginSet.OpenInstall.Editor
     {
         static PluginOpenInstallFilter()
         {
-            PluginFilter.RegisterFilterExpress<BuildOpenInstallParams>("com.pluginset.openinstall", "Plugins/iOS");
-//            PluginFilter.RegisterFilterExpress<BuildOpenInstallParams>("com.pluginset.openinstall", "Plugins/Android");
+            var filter = PluginFilter.IsBuildParamsEnable<BuildOpenInstallParams>();
+            PluginFilter.RegisterFilter("com.pluginset.openinstall/Plugins/iOS", filter);
         }
     }
 }
