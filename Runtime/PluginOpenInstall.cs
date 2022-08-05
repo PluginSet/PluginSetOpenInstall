@@ -138,7 +138,7 @@ namespace PluginSet.OpenInstall
             }
         }
         
-        public void CustomCall(string func, Action<Result> callback = null, Dictionary<string, object> param = null)
+        public void CustomCall(string func, Action<Result> callback = null, string json = null)
         {
             switch (func)
             {
