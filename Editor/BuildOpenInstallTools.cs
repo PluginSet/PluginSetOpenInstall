@@ -24,6 +24,9 @@ namespace PluginSet.OpenInstall.Editor
         public static void OnXcodeProjectModify(BuildProcessorContext context, PBXProjectManager projectManager)
         {
             var buildParams = context.BuildChannels.Get<BuildOpenInstallParams>("OpenInstall");
+            if (!buildParams.Enable)
+                return;
+            
             projectManager.PlistDocument.AddXcodeURLType("openSdk", "Editor", buildParams.OpenInstallAppKey);
             projectManager.AddAssociatedDomainsApplinks($"{buildParams.OpenInstallAppKey}.openinstall.io");
         }
