@@ -72,6 +72,9 @@ namespace PluginSet.OpenInstall
 //#endif
 //        }
 
+        /**
+         * called in Object-C
+         */
         private void OnGetInstallParams(string jsonData)
         {
             Logger.Debug("OnGetInstallParams :" + jsonData);
