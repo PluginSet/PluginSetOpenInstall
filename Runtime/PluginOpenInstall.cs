@@ -1,3 +1,5 @@
+
+using System.Collections;
 #if UNITY_EDITOR || ENABLE_OPEN_INSTALL
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ namespace PluginSet.OpenInstall
 #if !UNITY_EDITOR
     [PluginRegister]
 #endif
-    public class PluginOpenInstall: PluginBase, IPrivacyAuthorizationCallback, IReport, ICustomPlugin, IChannel
+    public class PluginOpenInstall: PluginBase, IStartPlugin, IPrivacyAuthorizationCallback, IReport, ICustomPlugin, IChannel
     {
         private static readonly Logger Logger = LoggerManager.GetLogger("OpenInstall");
         
@@ -34,6 +36,25 @@ namespace PluginSet.OpenInstall
         private int _channelCode = -1;
 
         public int ChannelPriority => 1000;
+
+        public int StartOrder => PluginsStartOrder.SdkDefault;
+        public bool IsRunning { get; private set; }
+        public IEnumerator StartPlugin()
+        {
+            if (IsRunning)
+                yield break;
+            
+            IsRunning = true;
+            
+            if (!isPrivacyAuthorizated)
+                yield break;
+            
+            InitSdk();
+        }
+
+        public void DisposePlugin(bool isAppQuit = false)
+        {
+        }
         
         public string GetChannelName()
         {
@@ -48,6 +69,12 @@ namespace PluginSet.OpenInstall
         public void OnPrivacyAuthorization()
         {
             isPrivacyAuthorizated = true;
+            if (IsRunning)
+                InitSdk();
+        }
+        
+        private void InitSdk()
+        {
 #if !UNITY_EDITOR && UNITY_IOS
             OpenInstallIOSApi.Plugin_OpenInstall_Init();
 #endif
@@ -152,6 +179,7 @@ namespace PluginSet.OpenInstall
                     break;
             }
         }
+
     }
 }
 #endif
