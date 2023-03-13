@@ -1,6 +1,6 @@
 using PluginSet.Core;
 using PluginSet.Core.Editor;
-using UnityEditor.iOS.Xcode;
+using UnityEditor;
 
 namespace PluginSet.OpenInstall.Editor
 {
@@ -10,6 +10,9 @@ namespace PluginSet.OpenInstall.Editor
         [OnSyncEditorSetting]
         public static void OnSyncEditorSetting(BuildProcessorContext context)
         {
+            if (context.BuildTarget != BuildTarget.Android && context.BuildTarget != BuildTarget.iOS)
+                return;
+                
             var buildParams = context.BuildChannels.Get<BuildOpenInstallParams>("OpenInstall");
             if (!buildParams.Enable)
                 return;
