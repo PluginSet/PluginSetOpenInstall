@@ -13,7 +13,7 @@ namespace PluginSet.OpenInstall.Editor
             if (context.BuildTarget != BuildTarget.Android && context.BuildTarget != BuildTarget.iOS)
                 return;
                 
-            var buildParams = context.BuildChannels.Get<BuildOpenInstallParams>("OpenInstall");
+            var buildParams = context.BuildChannels.Get<BuildOpenInstallParams>();
             if (!buildParams.Enable)
                 return;
             
@@ -26,7 +26,7 @@ namespace PluginSet.OpenInstall.Editor
         [iOSXCodeProjectModify]
         public static void OnXcodeProjectModify(BuildProcessorContext context, PBXProjectManager projectManager)
         {
-            var buildParams = context.BuildChannels.Get<BuildOpenInstallParams>("OpenInstall");
+            var buildParams = context.BuildChannels.Get<BuildOpenInstallParams>();
             if (!buildParams.Enable)
                 return;
             
