@@ -80,7 +80,7 @@ namespace PluginSet.OpenInstall
 #endif
         }
 
-        public void OnUserRegister()
+        public void OnUserRegister(string method = "Indefinite")
         {
 #if UNITY_IOS && !UNITY_EDITOR
             OpenInstallIOSApi.Plugin_OpenInstall_ReportRegister();
@@ -90,8 +90,13 @@ namespace PluginSet.OpenInstall
         public void OnUserRealName()
         {
         }
-        
-//        public void CustomEvent(string customEventName, Dictionary<string, object> eventData = null)
+
+        public void OnUserPurchase(bool success, string currency, float price, string paymentMethod, int amount = 1,
+            string productId = null, string productName = null, string productType = null)
+        {
+        }
+
+        //        public void CustomEvent(string customEventName, Dictionary<string, object> eventData = null)
 //        {
 //#if UNITY_ANDROID && !UNITY_EDITOR
 //#elif UNITY_IOS && !UNITY_EDITOR
