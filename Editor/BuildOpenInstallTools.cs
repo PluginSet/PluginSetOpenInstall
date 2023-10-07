@@ -33,6 +33,7 @@ namespace PluginSet.OpenInstall.Editor
             projectManager.PlistDocument.SetPlistValue("com.openinstall.APP_KEY", buildParams.OpenInstallAppKey);
             projectManager.PlistDocument.AddXcodeURLType("openSdk", "Editor", buildParams.OpenInstallAppKey);
             projectManager.AddAssociatedDomainsApplinks($"{buildParams.OpenInstallAppKey}.openinstall.io");
+            projectManager.AddAssociatedDomainsApplinks($"{buildParams.OpenInstallAppKey}.oplinking.com");
         }
     }
 }
